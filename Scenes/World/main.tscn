@@ -1,0 +1,47 @@
+[gd_scene load_steps=9 format=3 uid="uid://co50mhice5tpt"]
+
+[ext_resource type="PackedScene" uid="uid://dlo462pd4r520" path="res://Scenes/Player/player.tscn" id="1_xjea7"]
+[ext_resource type="PackedScene" uid="uid://dhtg2431n4noy" path="res://Scenes/Enemy/Enemy.tscn" id="2_5cpe0"]
+[ext_resource type="PackedScene" uid="uid://bdikwdtviibmb" path="res://Scenes/Utility/enemy_spawner.tscn" id="2_go6pg"]
+[ext_resource type="Script" path="res://Scenes/World/Background.cs" id="2_h5i4y"]
+[ext_resource type="Texture2D" uid="uid://ck3owpsp3ku7j" path="res://Art/22.png" id="3_5tx4k"]
+[ext_resource type="Script" path="res://Scenes/Utility/spawn_info.cs" id="4_31tem"]
+[ext_resource type="Texture2D" uid="uid://cvp62dtcqemt0" path="res://Art/battleground.png" id="4_ri3ci"]
+
+[sub_resource type="Resource" id="Resource_j2sck"]
+script = ExtResource("4_31tem")
+timeStart = 0
+timeEnd = 60
+enemy = ExtResource("2_5cpe0")
+enemyNum = 1
+enemySpawnDelay = 0
+enemySpawnType = 0
+enemySpawnLocation = 0.0
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_xjea7")]
+position = Vector2(38, 490)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("2_go6pg")]
+spawns = Array[Object]([SubResource("Resource_j2sck")])
+time = 0
+
+[node name="Background" type="ParallaxBackground" parent="."]
+script = ExtResource("2_h5i4y")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
+position = Vector2(273, -19)
+motion_mirroring = Vector2(1420, 0)
+
+[node name="BackgroundImg" type="Sprite2D" parent="Background/ParallaxLayer"]
+position = Vector2(741, 124)
+scale = Vector2(2.65807, 2.65807)
+texture = ExtResource("3_5tx4k")
+region_enabled = true
+region_rect = Rect2(583.981, 5.08352, 762.663, 241.577)
+
+[node name="ForegroundImg" type="Sprite2D" parent="Background/ParallaxLayer"]
+position = Vector2(445, 553.5)
+scale = Vector2(0.372396, 0.101389)
+texture = ExtResource("4_ri3ci")

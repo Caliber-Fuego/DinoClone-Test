@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdikwdtviibmb"]
+
+[ext_resource type="Script" path="res://Scenes/Utility/enemy_spawner.cs" id="1_32a3i"]
+
+[sub_resource type="Curve2D" id="Curve2D_wbr37"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1151, 410, 0, 0, 0, 0, 1151, 647)
+}
+point_count = 2
+
+[node name="EnemySpawner" type="Node2D"]
+script = ExtResource("1_32a3i")
+spawns = Array[Object]([])
+time = 1
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_wbr37")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(1151, 410)
+rotation = 1.5708
+
+[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://bkv8p1xi2pwnh"]
+
+[ext_resource type="Script" path="res://Scenes/Utility/HurtBox.cs" id="1_7l32e"]
+
+[node name="HurtBox" type="Area2D"]
+script = ExtResource("1_7l32e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="DisableTimer" type="Timer" parent="."]
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
+[connection signal="timeout" from="DisableTimer" to="." method="OnDisableTimerTimeout"]

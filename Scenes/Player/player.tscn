@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlo462pd4r520"]
+
+[ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_j8u7q"]
+[ext_resource type="Texture2D" uid="uid://e2m8v0yhsgh" path="res://Art/Atricry.png" id="2_t656q"]
+[ext_resource type="PackedScene" uid="uid://bkv8p1xi2pwnh" path="res://Scenes/Utility/hurt_box.tscn" id="3_hr22v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5g0tp"]
+size = Vector2(66, 74)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_duxci"]
+radius = 30.0167
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+motion_mode = 1
+script = ExtResource("1_j8u7q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+process_mode = 4
+position = Vector2(-1.90735e-06, 0)
+scale = Vector2(0.106027, 0.106027)
+texture = ExtResource("2_t656q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5g0tp")
+disabled = true
+
+[node name="HurtBox" parent="." instance=ExtResource("3_hr22v")]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+shape = SubResource("CircleShape2D_duxci")
+debug_color = Color(0.984314, 0.113725, 0, 0.737255)
+
+[connection signal="Hurt" from="HurtBox" to="." method="OnHurtBoxHurt"]
+
+[editable path="HurtBox"]
