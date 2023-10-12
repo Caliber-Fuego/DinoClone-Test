@@ -18,6 +18,8 @@ public partial class enemy_spawner : Node2D
         player = (Node2D) GetTree().GetFirstNodeInGroup("player");
 		spawnPath = GetNode<Path2D>("Path2D");
 		spawnLocation = GetNode<PathFollow2D>("Path2D/PathFollow2D");
+
+		Connect(SignalName.ChangeTime, new Callable(player, "trackTime"));
     }
 
 	public override void _PhysicsProcess(double delta)
@@ -53,5 +55,7 @@ public partial class enemy_spawner : Node2D
 				} 
 			}
 		}
+
+		EmitSignal(SignalName.ChangeTime, time);
 	}
 }

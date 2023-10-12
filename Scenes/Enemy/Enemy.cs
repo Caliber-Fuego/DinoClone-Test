@@ -7,9 +7,11 @@ public partial class Enemy : CharacterBody2D
 
 	public int hp = 5, damage = 1;
 
+	Player player;
 
     public override void _Ready()
     {
+		player = (Player) GetTree().GetFirstNodeInGroup("player");
     }
     public override void _PhysicsProcess(double delta)
 	{	
@@ -30,6 +32,7 @@ public partial class Enemy : CharacterBody2D
 		hp -= damage;
 
 		if (hp <= 0){
+			player.killCount++;
 			QueueFree();
 		}
 	}
