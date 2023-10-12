@@ -23,7 +23,7 @@ public partial class Player : CharacterBody2D
 	int swordLevel = 1;
 
 	//GUI
-	Label lblTimer, lblScore;
+	Label lblTimer, lblScore, lblScoreResult;
 	Panel deathPanel;
 
     public override void _Ready()
@@ -36,6 +36,7 @@ public partial class Player : CharacterBody2D
 		//GUI
 		lblTimer = GetNode<Label>("CanvasLayer/Control/lblTime");
 		lblScore = GetNode<Label>("CanvasLayer/Control/lblScore");
+		lblScoreResult =  GetNode<Label>("CanvasLayer/Control/DeathPanel/lblScoreResult");
 		deathPanel = GetNode<Panel>("CanvasLayer/Control/DeathPanel");
 
 		GD.Print(ScreenSize.X + ","+ScreenSize.Y);
@@ -125,11 +126,8 @@ public partial class Player : CharacterBody2D
 	}
 
 	public void changeScore(int value){
-
 		String getScore = value.ToString("D12");
-		lblScore.Text = $"{getScore}";
-		
-		
+		lblScore.Text = $"{getScore}";	
 	}
 	
 
@@ -140,6 +138,9 @@ public partial class Player : CharacterBody2D
 		var tween = deathPanel.CreateTween();
 		tween.TweenProperty(deathPanel, "position", new Vector2(414, 130), 1.5f).SetTrans(Tween.TransitionType.Quint).SetEase(Tween.EaseType.In);
 		tween.Play();
+
+		String getScore = score.ToString("D12");
+		lblScoreResult.Text = $"{getScore}";
 
 
 		Visible = false;
