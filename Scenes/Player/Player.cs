@@ -145,4 +145,9 @@ public partial class Player : CharacterBody2D
 
 		Visible = false;
 	}
+
+	public void OnBtnMenuPressed(){
+		GetTree().Paused = false;
+		var level = GetTree().ChangeSceneToFile("res://Scenes/World/title_screen.tscn");
+	}
 }

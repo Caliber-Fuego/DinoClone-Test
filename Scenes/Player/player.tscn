@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dlo462pd4r520"]
+[gd_scene load_steps=9 format=3 uid="uid://dlo462pd4r520"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_j8u7q"]
 [ext_resource type="Texture2D" uid="uid://dy75ao1jmnjax" path="res://Art/Player/PlayerTest.png" id="2_3vbio"]
 [ext_resource type="Texture2D" uid="uid://e2m8v0yhsgh" path="res://Art/Atricry.png" id="2_t656q"]
 [ext_resource type="PackedScene" uid="uid://bkv8p1xi2pwnh" path="res://Scenes/Utility/hurt_box.tscn" id="3_hr22v"]
 [ext_resource type="FontFile" uid="uid://dx6yd5xnr0jr7" path="res://Art/Fonts/Xolonium-Regular.ttf" id="5_a3n8s"]
+[ext_resource type="PackedScene" uid="uid://dggtyv2ubvec4" path="res://Scenes/Utility/button.tscn" id="6_7lt58"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5g0tp"]
 size = Vector2(66, 74)
@@ -77,6 +78,7 @@ horizontal_alignment = 2
 [node name="DeathPanel" type="Panel" parent="CanvasLayer/Control"]
 unique_name_in_owner = true
 process_mode = 2
+visible = false
 layout_mode = 0
 offset_left = 1207.0
 offset_top = 130.0
@@ -134,6 +136,10 @@ theme_override_font_sizes/font_size = 25
 text = "00000000000"
 horizontal_alignment = 1
 
+[node name="Button" parent="CanvasLayer/Control/DeathPanel" instance=ExtResource("6_7lt58")]
+layout_mode = 1
+
 [connection signal="Hurt" from="HurtBox" to="." method="OnHurtBoxHurt"]
+[connection signal="pressed" from="CanvasLayer/Control/DeathPanel/Button" to="." method="OnBtnMenuPressed"]
 
 [editable path="HurtBox"]
