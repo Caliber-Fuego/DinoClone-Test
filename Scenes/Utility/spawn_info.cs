@@ -6,6 +6,7 @@ public partial class spawn_info : Resource
 {
 	[Export] public int timeStart;
 	[Export] public int timeEnd;
+	[Export] public float speed;
 	[Export] public Resource enemy;
 	[Export] public int enemyNum;
 	[Export] public int enemySpawnDelay;

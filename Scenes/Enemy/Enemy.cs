@@ -22,13 +22,11 @@ public partial class Enemy : CharacterBody2D
 			Velocity = direction * Speed;
 		*/
 		
-		Velocity = Vector2.Left * Speed;
-
+		Velocity = Vector2.Left * (Speed + (player.time / 4));
 		MoveAndSlide();
 	}
 
 	public void OnHurtBoxHurt(int damage){
-		GD.Print("enemy damaged!");
 		hp -= damage;
 
 		if (hp <= 0){

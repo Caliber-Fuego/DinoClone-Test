@@ -31,22 +31,82 @@ theme_override_font_sizes/font_size = 100
 text = "Dyna Soul Clawn"
 horizontal_alignment = 1
 
-[node name="btnPlay" parent="." instance=ExtResource("2_vosxf")]
-layout_mode = 1
-offset_left = -101.0
-offset_top = -211.0
-offset_right = 101.0
-offset_bottom = -124.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -143.0
+offset_top = -214.0
+offset_right = 144.0
+offset_bottom = 112.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Leaderboards" type="GridContainer" parent="CanvasLayer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 20
+columns = 3
+
+[node name="placeContainer" type="VBoxContainer" parent="CanvasLayer/ScrollContainer/Leaderboards"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+alignment = 1
+
+[node name="nameContainer" type="VBoxContainer" parent="CanvasLayer/ScrollContainer/Leaderboards"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="scoreContainer" type="VBoxContainer" parent="CanvasLayer/ScrollContainer/Leaderboards"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="btnPlay" parent="CanvasLayer" instance=ExtResource("2_vosxf")]
+unique_name_in_owner = true
+offset_left = -122.0
+offset_top = -304.0
+offset_right = 123.0
+offset_bottom = -217.0
 theme_override_font_sizes/font_size = 65
 text = "Play"
 
-[node name="btnExit" parent="." instance=ExtResource("2_vosxf")]
-layout_mode = 1
-offset_left = -101.0
+[node name="btnScore" parent="CanvasLayer" instance=ExtResource("2_vosxf")]
+unique_name_in_owner = true
+offset_left = -122.5
+offset_top = -203.0
+offset_right = 122.5
+offset_bottom = -116.0
+theme_override_font_sizes/font_size = 65
+text = "Scores"
+
+[node name="btnReturn" parent="CanvasLayer" instance=ExtResource("2_vosxf")]
+unique_name_in_owner = true
+visible = false
+offset_left = -122.0
+offset_top = -203.0
+offset_right = 123.0
+offset_bottom = -116.0
+theme_override_font_sizes/font_size = 65
+text = "Back"
+
+[node name="btnExit" parent="CanvasLayer" instance=ExtResource("2_vosxf")]
+offset_left = -122.0
 offset_top = -104.0
-offset_right = 101.0
+offset_right = 123.0
 theme_override_font_sizes/font_size = 65
 text = "Exit"
 
-[connection signal="pressed" from="btnPlay" to="." method="OnBtnPlayPressed"]
-[connection signal="pressed" from="btnExit" to="." method="OnBtnExitPressed"]
+[connection signal="pressed" from="CanvasLayer/btnPlay" to="." method="OnBtnPlayPressed"]
+[connection signal="pressed" from="CanvasLayer/btnScore" to="." method="OnBtnLeaderboardsPressed"]
+[connection signal="pressed" from="CanvasLayer/btnReturn" to="." method="OnBtnReturnPressed"]
+[connection signal="pressed" from="CanvasLayer/btnExit" to="." method="OnBtnExitPressed"]

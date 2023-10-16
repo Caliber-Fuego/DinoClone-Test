@@ -12,6 +12,7 @@
 script = ExtResource("4_31tem")
 timeStart = 0
 timeEnd = 60
+speed = 0.0
 enemy = ExtResource("2_5cpe0")
 enemyNum = 1
 enemySpawnDelay = 0
@@ -32,7 +33,7 @@ script = ExtResource("2_h5i4y")
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Background"]
 position = Vector2(273, -19)
-motion_mirroring = Vector2(1420, 0)
+motion_mirroring = Vector2(1429, 0)
 
 [node name="BackgroundImg" type="Sprite2D" parent="Background/ParallaxLayer"]
 position = Vector2(741, 124)
