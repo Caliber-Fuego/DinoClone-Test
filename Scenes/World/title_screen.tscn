@@ -1,8 +1,23 @@
-[gd_scene load_steps=4 format=3 uid="uid://cb78p41oy61ye"]
+[gd_scene load_steps=11 format=3 uid="uid://cb78p41oy61ye"]
 
 [ext_resource type="Script" path="res://Scenes/World/title_screen.cs" id="1_1by1c"]
-[ext_resource type="FontFile" uid="uid://dx6yd5xnr0jr7" path="res://Art/Fonts/Xolonium-Regular.ttf" id="1_xn0bs"]
+[ext_resource type="VideoStream" path="res://Art/GUI/Title Screen/Title Screen.ogv" id="2_2y6ge"]
 [ext_resource type="PackedScene" uid="uid://dggtyv2ubvec4" path="res://Scenes/Utility/button.tscn" id="2_vosxf"]
+[ext_resource type="FontFile" uid="uid://cjiwlyaxkb08y" path="res://Art/Fonts/Diary of an 8-bit mage.otf" id="3_ibaho"]
+[ext_resource type="Texture2D" uid="uid://d1kcf1p2plbrp" path="res://Art/GUI/uipack.png" id="4_5dn1v"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wkuiy"]
+texture = ExtResource("4_5dn1v")
+region_rect = Rect2(132, 180, 92, 92)
+
+[sub_resource type="Theme" id="Theme_56x1f"]
+Panel/styles/panel = SubResource("StyleBoxTexture_wkuiy")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vwanu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yfrkx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3rla5"]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -13,7 +28,19 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1by1c")
 
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("2_2y6ge")
+autoplay = true
+
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,13 +50,25 @@ grow_vertical = 2
 color = Color(0.188235, 0.188235, 0.188235, 1)
 
 [node name="Label" type="Label" parent="."]
+visible = false
 layout_mode = 0
+offset_top = 19.0
 offset_right = 1152.0
-offset_bottom = 23.0
-theme_override_fonts/font = ExtResource("1_xn0bs")
+offset_bottom = 136.0
+theme_override_fonts/font = ExtResource("3_ibaho")
 theme_override_font_sizes/font_size = 100
-text = "Dyna Soul Clawn"
+text = "Dyna Soar"
 horizontal_alignment = 1
+
+[node name="ScorePanel" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = 412.0
+offset_top = 208.0
+offset_right = 728.0
+offset_bottom = 446.0
+theme = SubResource("Theme_56x1f")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -41,9 +80,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -143.0
-offset_top = -214.0
-offset_right = 144.0
-offset_bottom = 112.0
+offset_top = -94.0
+offset_right = 130.0
+offset_bottom = 104.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -77,8 +116,11 @@ offset_left = -122.0
 offset_top = -304.0
 offset_right = 123.0
 offset_bottom = -217.0
+theme_override_constants/icon_max_width = 0
+theme_override_fonts/font = ExtResource("3_ibaho")
 theme_override_font_sizes/font_size = 65
-text = "Play"
+theme_override_styles/normal = SubResource("StyleBoxEmpty_vwanu")
+text = "Start"
 
 [node name="btnScore" parent="CanvasLayer" instance=ExtResource("2_vosxf")]
 unique_name_in_owner = true
@@ -86,7 +128,9 @@ offset_left = -122.5
 offset_top = -203.0
 offset_right = 122.5
 offset_bottom = -116.0
+theme_override_fonts/font = ExtResource("3_ibaho")
 theme_override_font_sizes/font_size = 65
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yfrkx")
 text = "Scores"
 
 [node name="btnReturn" parent="CanvasLayer" instance=ExtResource("2_vosxf")]
@@ -96,6 +140,7 @@ offset_left = -122.0
 offset_top = -203.0
 offset_right = 123.0
 offset_bottom = -116.0
+theme_override_fonts/font = ExtResource("3_ibaho")
 theme_override_font_sizes/font_size = 65
 text = "Back"
 
@@ -103,9 +148,12 @@ text = "Back"
 offset_left = -122.0
 offset_top = -104.0
 offset_right = 123.0
+theme_override_fonts/font = ExtResource("3_ibaho")
 theme_override_font_sizes/font_size = 65
+theme_override_styles/normal = SubResource("StyleBoxEmpty_3rla5")
 text = "Exit"
 
+[connection signal="finished" from="VideoStreamPlayer" to="." method="OnVideoStreamPlayFinished"]
 [connection signal="pressed" from="CanvasLayer/btnPlay" to="." method="OnBtnPlayPressed"]
 [connection signal="pressed" from="CanvasLayer/btnScore" to="." method="OnBtnLeaderboardsPressed"]
 [connection signal="pressed" from="CanvasLayer/btnReturn" to="." method="OnBtnReturnPressed"]

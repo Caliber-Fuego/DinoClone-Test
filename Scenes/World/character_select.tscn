@@ -1,0 +1,130 @@
+[gd_scene load_steps=13 format=3 uid="uid://cupa88rqi1l5f"]
+
+[ext_resource type="VideoStream" path="res://Art/GUI/Character Select/Character Select.ogv" id="1_3ys12"]
+[ext_resource type="Script" path="res://Scenes/World/character_select.cs" id="1_rd4yg"]
+[ext_resource type="Texture2D" uid="uid://cv7abn2x3kd8y" path="res://Art/GUI/Character Select/Buttons/Eclipse_off.png" id="3_ycno4"]
+[ext_resource type="Texture2D" uid="uid://b37oprr1uw5a1" path="res://Art/GUI/Character Select/Buttons/Eclipse_on.png" id="4_6prb4"]
+[ext_resource type="Texture2D" uid="uid://cq8wattlfk8e6" path="res://Art/GUI/Character Select/Buttons/Sayaka_off.png" id="5_b4jc7"]
+[ext_resource type="Texture2D" uid="uid://d0mbw4evysd3w" path="res://Art/GUI/Character Select/Buttons/Sayaka_on.png" id="6_uh7p0"]
+[ext_resource type="Texture2D" uid="uid://cvdu5cg3pvb4p" path="res://Art/GUI/Character Select/Buttons/[1] Light Blue/[1] Normal.png" id="7_teaih"]
+[ext_resource type="Texture2D" uid="uid://cbtcn3sjoo1ru" path="res://Art/GUI/Character Select/Buttons/[1] Light Blue/[2] Clicked.png" id="8_vpq63"]
+[ext_resource type="Texture2D" uid="uid://ddhy7rgx44028" path="res://Art/GUI/Character Select/Buttons/[1] Light Blue/[3] Hover.png" id="9_qxapx"]
+[ext_resource type="FontFile" uid="uid://cjiwlyaxkb08y" path="res://Art/Fonts/Diary of an 8-bit mage.otf" id="10_0g6cs"]
+[ext_resource type="Texture2D" uid="uid://d1kcf1p2plbrp" path="res://Art/GUI/uipack.png" id="11_gii8b"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8xngv"]
+texture = ExtResource("11_gii8b")
+region_rect = Rect2(32, 384, 339, 64.742)
+
+[node name="character_select" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rd4yg")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+self_modulate = Color(0.396078, 0.396078, 0.396078, 1)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+stream = ExtResource("1_3ys12")
+autoplay = true
+
+[node name="EclipseBtn" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -386.0
+offset_top = -174.0
+offset_right = 614.0
+offset_bottom = 826.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("3_ycno4")
+texture_hover = ExtResource("4_6prb4")
+
+[node name="SayakaBtn" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 84.0
+offset_top = -174.0
+offset_right = 1084.0
+offset_bottom = 826.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.3, 0.3)
+texture_normal = ExtResource("5_b4jc7")
+texture_hover = ExtResource("6_uh7p0")
+
+[node name="StartBtn" type="TextureButton" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -58.0
+offset_top = 51.0
+offset_right = -10.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.435, 2.435)
+texture_normal = ExtResource("7_teaih")
+texture_pressed = ExtResource("8_vpq63")
+texture_hover = ExtResource("9_qxapx")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -164.0
+offset_top = -143.0
+offset_right = 164.0
+offset_bottom = -114.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("10_0g6cs")
+theme_override_font_sizes/font_size = 25
+text = "Enter character name:"
+
+[node name="LineEdit" type="LineEdit" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -94.0
+offset_right = 280.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("10_0g6cs")
+theme_override_font_sizes/font_size = 60
+theme_override_styles/normal = SubResource("StyleBoxTexture_8xngv")
+text = "Eclipse"
+alignment = 1
+
+[connection signal="finished" from="VideoStreamPlayer" to="." method="OnVideoStreamPlayFinished"]
+[connection signal="pressed" from="EclipseBtn" to="." method="OnEclipseBtnPressed"]
+[connection signal="pressed" from="SayakaBtn" to="." method="OnSayakaBtnPressed"]
+[connection signal="pressed" from="StartBtn" to="." method="OnStartBtnPressed"]

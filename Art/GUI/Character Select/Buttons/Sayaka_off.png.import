@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ck3owpsp3ku7j"
-path="res://.godot/imported/22.png-819c51a4f91841a3dd5fe75dfba53195.ctex"
+uid="uid://cq8wattlfk8e6"
+path="res://.godot/imported/Sayaka_off.png-038801e49f4197432e764b134df487ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/22.png"
-dest_files=["res://.godot/imported/22.png-819c51a4f91841a3dd5fe75dfba53195.ctex"]
+source_file="res://Art/GUI/Character Select/Buttons/Sayaka_off.png"
+dest_files=["res://.godot/imported/Sayaka_off.png-038801e49f4197432e764b134df487ef.ctex"]
 
 [params]
 

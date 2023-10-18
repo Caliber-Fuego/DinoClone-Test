@@ -15,6 +15,10 @@ run/main_scene="res://Scenes/World/title_screen.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*res://Scenes/Utility/Global.cs"
+
 [dotnet]
 
 project/assembly_name="DinoClone"

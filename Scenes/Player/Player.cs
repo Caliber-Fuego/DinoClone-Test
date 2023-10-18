@@ -8,12 +8,15 @@ public partial class Player : CharacterBody2D
 	[Export] public float speed {get; set;} = 200;
 	public int hp = 1, time = 0, killCount;
 	public int score = 0, currentScoreValue = 0, targetScoreValue = 0;
-	public string userName = "Eclipse";
+	public string userName;
 	public Vector2 mov = Vector2.Zero;
+	Global global;
 
 	//Nodes
 	public Vector2 ScreenSize;
 	public CollisionShape2D collision;
+	AnimatedSprite2D playerSprite;
+	string spritePath;
 	Sprite2D sprite;
 	Timer walkTimer;
 	Enemy enemy;
@@ -43,10 +46,19 @@ public partial class Player : CharacterBody2D
 
     public override void _Ready()
     {
-		sprite = GetNode<Sprite2D>("Sprite2D");
+		global = GetNode<Global>("/root/Global");
+
 		walkTimer = GetNode<Timer>("WalkTimer");
         ScreenSize = GetViewportRect().Size;
 		collision = GetNode<CollisionShape2D>("CollisionShape2D");
+
+		
+		//Sprite
+		spritePath = global.spritePath;
+		sprite = GetNode<Sprite2D>("Sprite2D");
+		playerSprite = GetNode<AnimatedSprite2D>(spritePath);
+		playerSprite.Visible = true;
+		playerSprite.Play("run");
 
 		//GUI
 		lblTimer = GetNode<Label>("CanvasLayer/Control/lblTime");
@@ -72,8 +84,7 @@ public partial class Player : CharacterBody2D
 
 		//Database Related
 		dbConnection = new SQLiteConnection();
-
-		GD.Print(ScreenSize.X + ","+ScreenSize.Y);
+		userName = global.userName;
 
     }
 
@@ -83,6 +94,7 @@ public partial class Player : CharacterBody2D
 		movement();
 
 		if(Input.IsActionJustPressed("LeftClick")){
+			playerSprite.Play("slash");
 			attack();
 		}
 	}
@@ -107,6 +119,7 @@ public partial class Player : CharacterBody2D
 		}else{
 			Velocity = mov.Normalized() * speed;
 		}
+
 		MoveAndSlide();
 
 
@@ -136,12 +149,15 @@ public partial class Player : CharacterBody2D
 	}
 
 	public void OnHurtBoxHurt(int damage){
-		GD.Print("player damaged!");
 		hp -= damage;
 
 		if (hp <= 0){
 			death();
 		}
+	}
+
+	public void OnAnimationFinished(){
+		playerSprite.Play("run");
 	}
 
 	public void trackTime(int argtime){
@@ -185,12 +201,10 @@ public partial class Player : CharacterBody2D
 
 	public void OnBtnMenuPressed(){
 		GetTree().Paused = false;
-		printData();
 		var level = GetTree().ChangeSceneToFile("res://Scenes/World/title_screen.tscn");
 	}
 
 	public void OnLeaderboardsMenuPressed(){
-		GD.Print("Leaderboards shown!");
 		listLeaderboards();
 		listUserScore();
 		lblScoreLabel.Visible = false;
@@ -260,7 +274,7 @@ public partial class Player : CharacterBody2D
 	void listUserScore(){
 		dbConnection = new SQLiteConnection($"Data Source= {dataPath}");
 		dbConnection.Open();
-		string query = $"WITH NewScore AS ( SELECT 'Eclipse' AS Name, {score} AS Score)"+ 
+		string query = $"WITH NewScore AS ( SELECT '{userName}' AS Name, {score} AS Score)"+ 
 			           "SELECT (SELECT COUNT(DISTINCT Score) FROM OverallScores WHERE Score >= ns.Score) + 1 AS placement,"+
 					   "ns.Name, ns.Score "+
 					   "FROM NewScore ns";

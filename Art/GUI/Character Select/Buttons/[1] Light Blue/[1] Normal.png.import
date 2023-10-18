@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://e2m8v0yhsgh"
-path="res://.godot/imported/Atricry.png-bc65f2ed68d631028aec764eeea43442.ctex"
+uid="uid://cvdu5cg3pvb4p"
+path="res://.godot/imported/[1] Normal.png-300e495e034e83d4038a0ca3e9549c5e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Atricry.png"
-dest_files=["res://.godot/imported/Atricry.png-bc65f2ed68d631028aec764eeea43442.ctex"]
+source_file="res://Art/GUI/Character Select/Buttons/[1] Light Blue/[1] Normal.png"
+dest_files=["res://.godot/imported/[1] Normal.png-300e495e034e83d4038a0ca3e9549c5e.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dy75ao1jmnjax"
-path="res://.godot/imported/PlayerTest.png-1126c1aa35c3b4ffe0d528d93dbd123a.ctex"
+uid="uid://p73o2g2snjta"
+path="res://.godot/imported/mordred_jus___sprite_sheet_by_xelectromanx10_ddbyx0d(1).png-af9d480a1e31d0601790533c3ed08d78.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Player/PlayerTest.png"
-dest_files=["res://.godot/imported/PlayerTest.png-1126c1aa35c3b4ffe0d528d93dbd123a.ctex"]
+source_file="res://Art/Player/mordred_jus___sprite_sheet_by_xelectromanx10_ddbyx0d(1).png"
+dest_files=["res://.godot/imported/mordred_jus___sprite_sheet_by_xelectromanx10_ddbyx0d(1).png-af9d480a1e31d0601790533c3ed08d78.ctex"]
 
 [params]
 

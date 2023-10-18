@@ -1,18 +1,215 @@
-[gd_scene load_steps=12 format=3 uid="uid://dlo462pd4r520"]
+[gd_scene load_steps=45 format=3 uid="uid://dlo462pd4r520"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_j8u7q"]
-[ext_resource type="Texture2D" uid="uid://dy75ao1jmnjax" path="res://Art/Player/PlayerTest.png" id="2_3vbio"]
+[ext_resource type="Texture2D" uid="uid://c1mnhm3wki2w7" path="res://Art/Player/eclipse_run.png" id="2_byx7g"]
 [ext_resource type="Texture2D" uid="uid://e2m8v0yhsgh" path="res://Art/Atricry.png" id="2_t656q"]
+[ext_resource type="Texture2D" uid="uid://phn27q6m6ccv" path="res://Art/Player/eclipse_runSlash.png" id="3_2r0yo"]
 [ext_resource type="PackedScene" uid="uid://bkv8p1xi2pwnh" path="res://Scenes/Utility/hurt_box.tscn" id="3_hr22v"]
+[ext_resource type="Texture2D" uid="uid://cj0g5dxc0q8am" path="res://Art/Player/sayaka_run.png" id="4_s83w0"]
+[ext_resource type="Texture2D" uid="uid://ds14fo7qdcx8c" path="res://Art/Player/sayaka_runSlash.png" id="5_227f8"]
 [ext_resource type="FontFile" uid="uid://dx6yd5xnr0jr7" path="res://Art/Fonts/Xolonium-Regular.ttf" id="5_a3n8s"]
+[ext_resource type="FontFile" uid="uid://cjiwlyaxkb08y" path="res://Art/Fonts/Diary of an 8-bit mage.otf" id="5_tj86y"]
 [ext_resource type="PackedScene" uid="uid://dggtyv2ubvec4" path="res://Scenes/Utility/button.tscn" id="6_7lt58"]
 [ext_resource type="Texture2D" uid="uid://d1kcf1p2plbrp" path="res://Art/GUI/uipack.png" id="8_j1ad6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6pg6"]
+atlas = ExtResource("2_byx7g")
+region = Rect2(0, 0, 70, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3u0h"]
+atlas = ExtResource("2_byx7g")
+region = Rect2(70, 0, 70, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1x1ye"]
+atlas = ExtResource("2_byx7g")
+region = Rect2(140, 0, 70, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0ds2"]
+atlas = ExtResource("2_byx7g")
+region = Rect2(210, 0, 70, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvkjr"]
+atlas = ExtResource("2_byx7g")
+region = Rect2(420, 0, 70, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pbye"]
+atlas = ExtResource("3_2r0yo")
+region = Rect2(0, 0, 71, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37yko"]
+atlas = ExtResource("3_2r0yo")
+region = Rect2(71, 0, 71, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2wloq"]
+atlas = ExtResource("3_2r0yo")
+region = Rect2(142, 0, 71, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6n0ri"]
+atlas = ExtResource("3_2r0yo")
+region = Rect2(213, 0, 71, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_otcw6"]
+atlas = ExtResource("3_2r0yo")
+region = Rect2(426, 0, 71, 43)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ajwsu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6pg6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3u0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1x1ye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0ds2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvkjr")
+}],
+"loop": true,
+"name": &"run",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pbye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37yko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2wloq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6n0ri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_otcw6")
+}],
+"loop": false,
+"name": &"slash",
+"speed": 30.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g0chg"]
+atlas = ExtResource("4_s83w0")
+region = Rect2(0, 0, 64, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0tnmk"]
+atlas = ExtResource("4_s83w0")
+region = Rect2(64, 0, 64, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hbuse"]
+atlas = ExtResource("4_s83w0")
+region = Rect2(128, 0, 64, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvtm2"]
+atlas = ExtResource("4_s83w0")
+region = Rect2(192, 0, 64, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fybsn"]
+atlas = ExtResource("4_s83w0")
+region = Rect2(256, 0, 64, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_arih7"]
+atlas = ExtResource("4_s83w0")
+region = Rect2(320, 0, 64, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1aun"]
+atlas = ExtResource("5_227f8")
+region = Rect2(0, 0, 64, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0gbad"]
+atlas = ExtResource("5_227f8")
+region = Rect2(64, 0, 64, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d20wb"]
+atlas = ExtResource("5_227f8")
+region = Rect2(128, 0, 64, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqqu7"]
+atlas = ExtResource("5_227f8")
+region = Rect2(192, 0, 64, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_titcq"]
+atlas = ExtResource("5_227f8")
+region = Rect2(256, 0, 64, 59)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfe7n"]
+atlas = ExtResource("5_227f8")
+region = Rect2(320, 0, 64, 59)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7jp3e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g0chg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0tnmk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hbuse")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvtm2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fybsn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_arih7")
+}],
+"loop": true,
+"name": &"run",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1aun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0gbad")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d20wb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqqu7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_titcq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfe7n")
+}],
+"loop": false,
+"name": &"slash",
+"speed": 20.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5g0tp"]
 size = Vector2(66, 74)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_duxci"]
 radius = 30.0167
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dbm0u"]
+texture = ExtResource("8_j1ad6")
+region_rect = Rect2(132, 180, 92, 92)
+
+[sub_resource type="Theme" id="Theme_2eh7o"]
+Panel/styles/panel = SubResource("StyleBoxTexture_dbm0u")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4xkby"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hg6rd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_74rrt"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4cwq8"]
 texture = ExtResource("8_j1ad6")
@@ -26,16 +223,23 @@ Panel/styles/panel = SubResource("StyleBoxTexture_4cwq8")
 motion_mode = 1
 script = ExtResource("1_j8u7q")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-process_mode = 4
+[node name="EclipseSprite" type="AnimatedSprite2D" parent="."]
 visible = false
-position = Vector2(4, -16)
-scale = Vector2(5, 5)
-texture = ExtResource("2_3vbio")
-hframes = 8
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ajwsu")
+animation = &"slash"
+
+[node name="SayakaSprite" type="AnimatedSprite2D" parent="."]
+visible = false
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_7jp3e")
+animation = &"slash"
+frame = 5
+frame_progress = 1.0
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 process_mode = 4
+visible = false
 position = Vector2(-0.390634, -0.285089)
 scale = Vector2(0.103983, 0.103983)
 texture = ExtResource("2_t656q")
@@ -70,7 +274,8 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 40.0
-theme_override_fonts/font = ExtResource("5_a3n8s")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_tj86y")
 theme_override_font_sizes/font_size = 30
 text = "00:00"
 horizontal_alignment = 1
@@ -81,6 +286,8 @@ layout_mode = 0
 offset_left = 990.0
 offset_right = 1152.0
 offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_tj86y")
 text = "000000000000"
 horizontal_alignment = 2
 
@@ -92,6 +299,7 @@ offset_left = 1207.0
 offset_top = 130.0
 offset_right = 1523.0
 offset_bottom = 476.0
+theme = SubResource("Theme_2eh7o")
 
 [node name="lblResult" type="Label" parent="CanvasLayer/Control/DeathPanel"]
 unique_name_in_owner = true
@@ -99,13 +307,15 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -50.0
-offset_right = 50.0
-offset_bottom = 34.0
+offset_left = -51.0
+offset_top = 22.0
+offset_right = 49.0
+offset_bottom = 56.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("5_a3n8s")
+theme_override_fonts/font = ExtResource("5_tj86y")
 theme_override_font_sizes/font_size = 25
 text = "Results"
+horizontal_alignment = 1
 
 [node name="lblUserResult" type="Label" parent="CanvasLayer/Control/DeathPanel"]
 unique_name_in_owner = true
@@ -114,12 +324,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -50.0
-offset_top = 164.0
-offset_right = 50.0
-offset_bottom = 198.0
+offset_left = -79.5
+offset_top = 181.0
+offset_right = 79.5
+offset_bottom = 215.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("5_a3n8s")
+theme_override_fonts/font = ExtResource("5_tj86y")
 theme_override_font_sizes/font_size = 25
 text = "Your Score"
 
@@ -137,7 +347,7 @@ offset_right = 24.0
 offset_bottom = -37.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_fonts/font = ExtResource("5_a3n8s")
+theme_override_fonts/font = ExtResource("5_tj86y")
 theme_override_font_sizes/font_size = 25
 text = "Score"
 
@@ -162,10 +372,10 @@ horizontal_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/Control/DeathPanel"]
 layout_mode = 0
-offset_left = 16.0
-offset_top = 31.0
-offset_right = 303.0
-offset_bottom = 164.0
+offset_left = 28.0
+offset_top = 46.0
+offset_right = 292.0
+offset_bottom = 176.0
 
 [node name="Leaderboards" type="GridContainer" parent="CanvasLayer/Control/DeathPanel/ScrollContainer"]
 unique_name_in_owner = true
@@ -191,10 +401,10 @@ alignment = 1
 [node name="userScoreboard" type="GridContainer" parent="CanvasLayer/Control/DeathPanel"]
 unique_name_in_owner = true
 layout_mode = 2
-offset_left = 16.0
-offset_top = 190.0
-offset_right = 56.0
-offset_bottom = 193.0
+offset_left = 28.0
+offset_top = 207.0
+offset_right = 68.0
+offset_bottom = 210.0
 theme_override_constants/h_separation = 20
 columns = 3
 
@@ -216,23 +426,31 @@ alignment = 1
 [node name="Button" parent="CanvasLayer/Control/DeathPanel" instance=ExtResource("6_7lt58")]
 layout_mode = 1
 offset_left = -99.0
+offset_top = -67.0
 offset_right = 90.0
+offset_bottom = -28.0
+theme_override_fonts/font = ExtResource("5_tj86y")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4xkby")
 
 [node name="ScoreBtn" parent="CanvasLayer/Control/DeathPanel" instance=ExtResource("6_7lt58")]
 layout_mode = 1
 offset_left = -99.0
-offset_top = -101.0
+offset_top = -111.0
 offset_right = 89.0
-offset_bottom = -62.0
+offset_bottom = -72.0
+theme_override_fonts/font = ExtResource("5_tj86y")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hg6rd")
 text = "Show Score"
 
 [node name="SubmitBtn" parent="CanvasLayer/Control/DeathPanel" instance=ExtResource("6_7lt58")]
 visible = false
 layout_mode = 1
 offset_left = -99.0
-offset_top = -101.0
+offset_top = -112.0
 offset_right = 89.0
-offset_bottom = -62.0
+offset_bottom = -73.0
+theme_override_fonts/font = ExtResource("5_tj86y")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_74rrt")
 text = "Submit Score"
 
 [node name="LeaderboardsPanel" type="Panel" parent="CanvasLayer/Control"]
@@ -385,6 +603,8 @@ theme_override_fonts/font = ExtResource("5_a3n8s")
 theme_override_font_sizes/font_size = 9
 text = "Caliber"
 
+[connection signal="animation_finished" from="EclipseSprite" to="." method="OnAnimationFinished"]
+[connection signal="animation_finished" from="SayakaSprite" to="." method="OnAnimationFinished"]
 [connection signal="Hurt" from="HurtBox" to="." method="OnHurtBoxHurt"]
 [connection signal="pressed" from="CanvasLayer/Control/DeathPanel/Button" to="." method="OnBtnMenuPressed"]
 [connection signal="pressed" from="CanvasLayer/Control/DeathPanel/ScoreBtn" to="." method="OnLeaderboardsMenuPressed"]

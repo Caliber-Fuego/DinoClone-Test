@@ -5,7 +5,7 @@ using System.Data.SQLite;
 
 public partial class title_screen : Control
 {
-	string playLevel = "res://Scenes/World/main.tscn";
+	string playLevel = "res://Scenes/World/character_select.tscn";
 
 	//Database
 	public string dataPath {get;} = "C:/Users/Asus/Documents/School Documents/Object Oriented Programming/Tests/DinoClone Test/Database/data.db";
@@ -14,10 +14,12 @@ public partial class title_screen : Control
 	SQLiteCommand dbCmd;
 
 	//GUI
+	Panel scorePanel;
 	Button scoreBtn, returnBtn, playBtn;
 	ScrollContainer scrollContainer;
 	GridContainer leaderboards;
 	VBoxContainer placementVbox, nameVbox, scoreVbox;
+	VideoStreamPlayer titleBG;
 
     public override void _Ready()
     {
@@ -30,6 +32,7 @@ public partial class title_screen : Control
 		placementVbox = GetNode<VBoxContainer>("CanvasLayer/ScrollContainer/Leaderboards/placeContainer");
 		nameVbox 	  = GetNode<VBoxContainer>("CanvasLayer/ScrollContainer/Leaderboards/nameContainer");
 		scoreVbox 	  = GetNode<VBoxContainer>("CanvasLayer/ScrollContainer/Leaderboards/scoreContainer");
+		scorePanel    = GetNode<Panel>("ScorePanel");
 
 		scoreBtn = GetNode<Button>("CanvasLayer/btnScore");
 		returnBtn = GetNode<Button>("CanvasLayer/btnReturn");
@@ -45,9 +48,21 @@ public partial class title_screen : Control
 	}
 
 	public void OnBtnLeaderboardsPressed(){
+		scrollContainer = GetNode<ScrollContainer>("CanvasLayer/ScrollContainer");
+		leaderboards = GetNode<GridContainer>("CanvasLayer/ScrollContainer/Leaderboards");
+		placementVbox = GetNode<VBoxContainer>("CanvasLayer/ScrollContainer/Leaderboards/placeContainer");
+		nameVbox 	  = GetNode<VBoxContainer>("CanvasLayer/ScrollContainer/Leaderboards/nameContainer");
+		scoreVbox 	  = GetNode<VBoxContainer>("CanvasLayer/ScrollContainer/Leaderboards/scoreContainer");
+		scorePanel    = GetNode<Panel>("ScorePanel");
+
+		scoreBtn = GetNode<Button>("CanvasLayer/btnScore");
+		returnBtn = GetNode<Button>("CanvasLayer/btnReturn");
+		playBtn = GetNode<Button>("CanvasLayer/btnPlay");
+
 		playBtn.Visible = false;
 		scoreBtn.Visible = false;
 		
+		scorePanel.Visible = true;
 		returnBtn.Visible = true;
 		scrollContainer.Visible = true;
 		listScores();
@@ -56,8 +71,15 @@ public partial class title_screen : Control
 	public void OnBtnReturnPressed(){
 		playBtn.Visible = true;
 		scoreBtn.Visible = true;
+
+		scorePanel.Visible = false;
 		returnBtn.Visible = false;
 		scrollContainer.Visible = false;
+	}
+
+	public void OnVideoStreamPlayFinished(){
+		titleBG		  = GetNode<VideoStreamPlayer>("VideoStreamPlayer");
+		titleBG.Play();
 	}
 
 	void listScores(){
@@ -111,7 +133,7 @@ public partial class title_screen : Control
 		{
     		scoreVbox.AddChild(label);
 		}
-
+		
 		dbRead.Close();
 		dbConnection.Close();
 	}
