@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cb78p41oy61ye"]
+[gd_scene load_steps=12 format=3 uid="uid://cb78p41oy61ye"]
 
 [ext_resource type="Script" path="res://Scenes/World/title_screen.cs" id="1_1by1c"]
 [ext_resource type="VideoStream" path="res://Art/GUI/Title Screen/Title Screen.ogv" id="2_2y6ge"]
 [ext_resource type="PackedScene" uid="uid://dggtyv2ubvec4" path="res://Scenes/Utility/button.tscn" id="2_vosxf"]
 [ext_resource type="FontFile" uid="uid://cjiwlyaxkb08y" path="res://Art/Fonts/Diary of an 8-bit mage.otf" id="3_ibaho"]
+[ext_resource type="AudioStream" uid="uid://xgrw4gdb1klp" path="res://Art/SFX/xDeviruchi - Title Theme .wav" id="3_xmbot"]
 [ext_resource type="Texture2D" uid="uid://d1kcf1p2plbrp" path="res://Art/GUI/uipack.png" id="4_5dn1v"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wkuiy"]
@@ -37,6 +38,11 @@ offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 stream = ExtResource("2_2y6ge")
+autoplay = true
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xmbot")
+volume_db = -31.342
 autoplay = true
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -154,7 +160,8 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_3rla5")
 text = "Exit"
 
 [connection signal="finished" from="VideoStreamPlayer" to="." method="OnVideoStreamPlayFinished"]
-[connection signal="pressed" from="CanvasLayer/btnPlay" to="." method="OnBtnPlayPressed"]
-[connection signal="pressed" from="CanvasLayer/btnScore" to="." method="OnBtnLeaderboardsPressed"]
-[connection signal="pressed" from="CanvasLayer/btnReturn" to="." method="OnBtnReturnPressed"]
-[connection signal="pressed" from="CanvasLayer/btnExit" to="." method="OnBtnExitPressed"]
+[connection signal="finished" from="bgm" to="." method="OnBGMPlayFinished"]
+[connection signal="ClickEnd" from="CanvasLayer/btnPlay" to="." method="OnBtnPlayPressed"]
+[connection signal="ClickEnd" from="CanvasLayer/btnScore" to="." method="OnBtnLeaderboardsPressed"]
+[connection signal="ClickEnd" from="CanvasLayer/btnReturn" to="." method="OnBtnReturnPressed"]
+[connection signal="ClickEnd" from="CanvasLayer/btnExit" to="." method="OnBtnExitPressed"]

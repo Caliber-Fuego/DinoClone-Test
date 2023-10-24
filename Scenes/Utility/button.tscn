@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dggtyv2ubvec4"]
+[gd_scene load_steps=5 format=3 uid="uid://dggtyv2ubvec4"]
 
 [ext_resource type="FontFile" uid="uid://dx6yd5xnr0jr7" path="res://Art/Fonts/Xolonium-Regular.ttf" id="1_avuwt"]
 [ext_resource type="Script" path="res://Scenes/Utility/button.cs" id="2_qejhh"]
+[ext_resource type="AudioStream" uid="uid://ckeksjrrm0bti" path="res://Art/SFX/hover.wav" id="3_mi2tw"]
+[ext_resource type="AudioStream" uid="uid://cl1s2mto70a6l" path="res://Art/SFX/click.wav" id="4_a5hce"]
 
 [node name="Button" type="Button"]
 anchors_preset = 7
@@ -19,3 +21,13 @@ theme_override_fonts/font = ExtResource("1_avuwt")
 theme_override_font_sizes/font_size = 25
 text = "Menu"
 script = ExtResource("2_qejhh")
+
+[node name="sndHover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_mi2tw")
+
+[node name="sndClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_a5hce")
+
+[connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]
+[connection signal="pressed" from="." to="." method="OnPressed"]
+[connection signal="finished" from="sndClick" to="." method="OnSndClickFinished"]

@@ -20,6 +20,7 @@ public partial class title_screen : Control
 	GridContainer leaderboards;
 	VBoxContainer placementVbox, nameVbox, scoreVbox;
 	VideoStreamPlayer titleBG;
+	AudioStreamPlayer titleBGM;
 
     public override void _Ready()
     {
@@ -80,6 +81,11 @@ public partial class title_screen : Control
 	public void OnVideoStreamPlayFinished(){
 		titleBG		  = GetNode<VideoStreamPlayer>("VideoStreamPlayer");
 		titleBG.Play();
+	}
+
+	public void OnBGMPlayFinished(){
+		titleBGM = GetNode<AudioStreamPlayer>("bgm");
+		titleBGM.Play();
 	}
 
 	void listScores(){

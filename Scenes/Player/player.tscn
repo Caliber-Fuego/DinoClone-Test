@@ -1,8 +1,7 @@
-[gd_scene load_steps=45 format=3 uid="uid://dlo462pd4r520"]
+[gd_scene load_steps=47 format=3 uid="uid://dlo462pd4r520"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_j8u7q"]
 [ext_resource type="Texture2D" uid="uid://c1mnhm3wki2w7" path="res://Art/Player/eclipse_run.png" id="2_byx7g"]
-[ext_resource type="Texture2D" uid="uid://e2m8v0yhsgh" path="res://Art/Atricry.png" id="2_t656q"]
 [ext_resource type="Texture2D" uid="uid://phn27q6m6ccv" path="res://Art/Player/eclipse_runSlash.png" id="3_2r0yo"]
 [ext_resource type="PackedScene" uid="uid://bkv8p1xi2pwnh" path="res://Scenes/Utility/hurt_box.tscn" id="3_hr22v"]
 [ext_resource type="Texture2D" uid="uid://cj0g5dxc0q8am" path="res://Art/Player/sayaka_run.png" id="4_s83w0"]
@@ -11,6 +10,8 @@
 [ext_resource type="FontFile" uid="uid://cjiwlyaxkb08y" path="res://Art/Fonts/Diary of an 8-bit mage.otf" id="5_tj86y"]
 [ext_resource type="PackedScene" uid="uid://dggtyv2ubvec4" path="res://Scenes/Utility/button.tscn" id="6_7lt58"]
 [ext_resource type="Texture2D" uid="uid://d1kcf1p2plbrp" path="res://Art/GUI/uipack.png" id="8_j1ad6"]
+[ext_resource type="AudioStream" uid="uid://w1pvr3f47p2w" path="res://Art/SFX/Lose.ogg" id="11_00jpt"]
+[ext_resource type="AudioStream" uid="uid://dfhra2mmyhc48" path="res://Art/SFX/woosh.wav" id="12_k86l7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_y6pg6"]
 atlas = ExtResource("2_byx7g")
@@ -192,6 +193,8 @@ animations = [{
 "speed": 20.0
 }]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_36ekd"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5g0tp"]
 size = Vector2(66, 74)
 
@@ -234,15 +237,13 @@ visible = false
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_7jp3e")
 animation = &"slash"
-frame = 5
-frame_progress = 1.0
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 process_mode = 4
 visible = false
 position = Vector2(-0.390634, -0.285089)
 scale = Vector2(0.103983, 0.103983)
-texture = ExtResource("2_t656q")
+texture = SubResource("CompressedTexture2D_36ekd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5g0tp")
@@ -573,7 +574,7 @@ alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control/LeaderboardsPanel/ScrollContainer/Leaderboards/HBoxContainer/imgContainer"]
 layout_mode = 2
-texture = ExtResource("2_t656q")
+texture = SubResource("CompressedTexture2D_36ekd")
 expand_mode = 5
 
 [node name="placeContainer" type="VBoxContainer" parent="CanvasLayer/Control/LeaderboardsPanel/ScrollContainer/Leaderboards/HBoxContainer"]
@@ -602,6 +603,14 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("5_a3n8s")
 theme_override_font_sizes/font_size = 9
 text = "Caliber"
+
+[node name="sndDeath" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_00jpt")
+volume_db = -38.146
+
+[node name="sndSlash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_k86l7")
+volume_db = -21.37
 
 [connection signal="animation_finished" from="EclipseSprite" to="." method="OnAnimationFinished"]
 [connection signal="animation_finished" from="SayakaSprite" to="." method="OnAnimationFinished"]

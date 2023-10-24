@@ -9,6 +9,8 @@ public partial class character_select : Control
 
 	//GUI
 	VideoStreamPlayer selectBG;
+	AudioStreamPlayer selectBGM;
+
 	Label nameLabel;
 	TextureButton startBtn, eclipseBtn, sayakaBtn;
 	LineEdit userInput;
@@ -57,5 +59,10 @@ public partial class character_select : Control
 		global.userName = userInput.Text;
 		var level = GetTree().ChangeSceneToFile(playLevel);
 
+	}
+
+	public void OnBGMPlayFinished(){
+		selectBGM = GetNode<AudioStreamPlayer>("bgm");
+		selectBGM.Play();
 	}
 }

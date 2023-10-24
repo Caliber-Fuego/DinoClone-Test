@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://byxbih7ohjawv"]
+
+[ext_resource type="Script" path="res://Scenes/Utility/basicTextureButton.cs" id="1_0b62u"]
+[ext_resource type="AudioStream" uid="uid://ckeksjrrm0bti" path="res://Art/SFX/hover.wav" id="2_xlj1f"]
+[ext_resource type="AudioStream" uid="uid://cl1s2mto70a6l" path="res://Art/SFX/click.wav" id="3_n5msf"]
+
+[node name="TextureButton" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_0b62u")
+
+[node name="sndHover" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_xlj1f")
+
+[node name="sndClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_n5msf")
+
+[connection signal="mouse_entered" from="." to="." method="OnMouseEntered"]
+[connection signal="pressed" from="." to="." method="OnPressed"]
+[connection signal="finished" from="sndClick" to="." method="OnSndClickFinished"]

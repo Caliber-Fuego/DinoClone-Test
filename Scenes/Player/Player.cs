@@ -37,6 +37,7 @@ public partial class Player : CharacterBody2D
 
 	//GUI
 	Label lblTimer, lblScore, lblScoreResult, lblUserScoreResult, lblScoreLabel;
+	AudioStreamPlayer snd;
 	GridContainer leaderboards, userBoard;
 	Button scoreBtn, submitBtn;
 	Panel deathPanel, leaderboardsPanel;
@@ -135,8 +136,9 @@ public partial class Player : CharacterBody2D
 	}
 
 	public void attack(){
-
 		if(swordLevel > 0){
+			snd = GetNode<AudioStreamPlayer>("sndSlash");
+			snd.Play();
 			SwordAttack();
 		}
 	}
@@ -187,6 +189,9 @@ public partial class Player : CharacterBody2D
 		deathPanel.Visible = true;
 		GetTree().Paused = true;
 
+			snd = GetNode<AudioStreamPlayer>("sndDeath");
+			snd.Play();
+
 		var tween = deathPanel.CreateTween();
 		tween.TweenProperty(deathPanel, "position", new Vector2(414, 130), 1.5f).SetTrans(Tween.TransitionType.Quint).SetEase(Tween.EaseType.In);
 		tween.Play();
@@ -194,7 +199,6 @@ public partial class Player : CharacterBody2D
 		leaderboardsPanel.Position = new Vector2(260, 130);
 		String getScore = score.ToString("D12");
 		lblScoreResult.Text = $"{getScore}";
-
 
 		Visible = false;
 	}

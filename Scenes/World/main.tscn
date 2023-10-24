@@ -1,5 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://co50mhice5tpt"]
+[gd_scene load_steps=14 format=3 uid="uid://co50mhice5tpt"]
 
+[ext_resource type="Script" path="res://Scenes/World/level1.cs" id="1_d5dbs"]
 [ext_resource type="PackedScene" uid="uid://dlo462pd4r520" path="res://Scenes/Player/player.tscn" id="1_xjea7"]
 [ext_resource type="PackedScene" uid="uid://dhtg2431n4noy" path="res://Scenes/Enemy/Enemy.tscn" id="2_5cpe0"]
 [ext_resource type="PackedScene" uid="uid://bdikwdtviibmb" path="res://Scenes/Utility/enemy_spawner.tscn" id="2_go6pg"]
@@ -10,19 +11,21 @@
 [ext_resource type="Texture2D" uid="uid://cibh1a2qx7p3o" path="res://Art/Background/3(1).png" id="8_lg4nw"]
 [ext_resource type="Texture2D" uid="uid://62kiawkio2y6" path="res://Art/Background/5(1).png" id="10_q428j"]
 [ext_resource type="Texture2D" uid="uid://dtkdg8sc0in1x" path="res://Art/Background/4(1).png" id="11_qok3i"]
+[ext_resource type="AudioStream" uid="uid://c2j04jek7sm0y" path="res://Art/SFX/xDeviruchi - Exploring The Unknown.wav" id="12_415en"]
 
 [sub_resource type="Resource" id="Resource_j2sck"]
 script = ExtResource("4_31tem")
 timeStart = 0
-timeEnd = 60
+timeEnd = 9999
 speed = 0.0
 enemy = ExtResource("2_5cpe0")
-enemyNum = 1
+enemyNum = 2
 enemySpawnDelay = 0
 enemySpawnType = 0
 enemySpawnLocation = 0.0
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_d5dbs")
 
 [node name="EnemySpawner" parent="." instance=ExtResource("2_go6pg")]
 spawns = Array[Object]([SubResource("Resource_j2sck")])
@@ -118,3 +121,10 @@ position = Vector2(498.738, 602.804)
 scale = Vector2(2.67105, 0.424714)
 texture = ExtResource("10_q428j")
 region_rect = Rect2(565.972, 110.249, 280.229, 4.83154)
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_415en")
+volume_db = -25.819
+autoplay = true
+
+[connection signal="finished" from="bgm" to="." method="OnBGMPlayFinished"]

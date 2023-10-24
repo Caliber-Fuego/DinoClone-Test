@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://cupa88rqi1l5f"]
+[gd_scene load_steps=15 format=3 uid="uid://cupa88rqi1l5f"]
 
 [ext_resource type="VideoStream" path="res://Art/GUI/Character Select/Character Select.ogv" id="1_3ys12"]
 [ext_resource type="Script" path="res://Scenes/World/character_select.cs" id="1_rd4yg"]
+[ext_resource type="PackedScene" uid="uid://byxbih7ohjawv" path="res://Scenes/Utility/texture_button.tscn" id="3_mcsmy"]
 [ext_resource type="Texture2D" uid="uid://cv7abn2x3kd8y" path="res://Art/GUI/Character Select/Buttons/Eclipse_off.png" id="3_ycno4"]
 [ext_resource type="Texture2D" uid="uid://b37oprr1uw5a1" path="res://Art/GUI/Character Select/Buttons/Eclipse_on.png" id="4_6prb4"]
 [ext_resource type="Texture2D" uid="uid://cq8wattlfk8e6" path="res://Art/GUI/Character Select/Buttons/Sayaka_off.png" id="5_b4jc7"]
@@ -11,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://ddhy7rgx44028" path="res://Art/GUI/Character Select/Buttons/[1] Light Blue/[3] Hover.png" id="9_qxapx"]
 [ext_resource type="FontFile" uid="uid://cjiwlyaxkb08y" path="res://Art/Fonts/Diary of an 8-bit mage.otf" id="10_0g6cs"]
 [ext_resource type="Texture2D" uid="uid://d1kcf1p2plbrp" path="res://Art/GUI/uipack.png" id="11_gii8b"]
+[ext_resource type="AudioStream" uid="uid://cjdrxh5be74my" path="res://Art/SFX/xDeviruchi - Mysterious Dungeon.wav" id="13_qolvk"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8xngv"]
 texture = ExtResource("11_gii8b")
@@ -33,7 +35,7 @@ offset_bottom = 40.0
 stream = ExtResource("1_3ys12")
 autoplay = true
 
-[node name="EclipseBtn" type="TextureButton" parent="."]
+[node name="EclipseBtn" parent="." instance=ExtResource("3_mcsmy")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -42,15 +44,15 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -386.0
 offset_top = -174.0
-offset_right = 614.0
-offset_bottom = 826.0
+offset_right = 126.0
+offset_bottom = 338.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.525, 0.525)
 texture_normal = ExtResource("3_ycno4")
 texture_hover = ExtResource("4_6prb4")
 
-[node name="SayakaBtn" type="TextureButton" parent="."]
+[node name="SayakaBtn" parent="." instance=ExtResource("3_mcsmy")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -59,15 +61,15 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 84.0
 offset_top = -174.0
-offset_right = 1084.0
-offset_bottom = 826.0
+offset_right = 596.0
+offset_bottom = 338.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.525, 0.525)
 texture_normal = ExtResource("5_b4jc7")
 texture_hover = ExtResource("6_uh7p0")
 
-[node name="StartBtn" type="TextureButton" parent="."]
+[node name="StartBtn" parent="." instance=ExtResource("3_mcsmy")]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -124,7 +126,14 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_8xngv")
 text = "Eclipse"
 alignment = 1
 
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_qolvk")
+volume_db = -30.63
+pitch_scale = 1.36
+autoplay = true
+
 [connection signal="finished" from="VideoStreamPlayer" to="." method="OnVideoStreamPlayFinished"]
-[connection signal="pressed" from="EclipseBtn" to="." method="OnEclipseBtnPressed"]
-[connection signal="pressed" from="SayakaBtn" to="." method="OnSayakaBtnPressed"]
-[connection signal="pressed" from="StartBtn" to="." method="OnStartBtnPressed"]
+[connection signal="ClickEnd" from="EclipseBtn" to="." method="OnEclipseBtnPressed"]
+[connection signal="ClickEnd" from="SayakaBtn" to="." method="OnSayakaBtnPressed"]
+[connection signal="ClickEnd" from="StartBtn" to="." method="OnStartBtnPressed"]
+[connection signal="finished" from="bgm" to="." method="OnBGMPlayFinished"]
